@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "489159667171",
+    "firebase_url": "https://rescue-okay.firebaseio.com",
+    "project_id": "rescue-okay",
+    "storage_bucket": "rescue-okay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489159667171:android:825635093ecd90a43b44d6",
+        "android_client_info": {
+          "package_name": "com.okay.rescue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489159667171-23giodss04us59iip5s68lfddflkcc56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.okay.rescue",
+            "certificate_hash": "551c5c19a3f9d612524345716872fb0b86ff011a"
+          }
+        },
+        {
+          "client_id": "489159667171-dsmm57up17ir43lkd4bkp078bo09ashp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfmp0odKeGk1bCQp44pwJ3MzO0Gv63fHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489159667171-dsmm57up17ir43lkd4bkp078bo09ashp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
