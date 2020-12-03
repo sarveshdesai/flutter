@@ -1,9 +1,8 @@
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:rescue/global/controllers/auth.dart';
 import 'package:rescue/global/controllers/auth_provider.dart';
-import 'package:rescue/global/themes/themes.dart';
-import 'package:rescue/pages/root.dart';
 import 'package:rescue/pages/signin_screen.dart';
 
 
@@ -100,6 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          obscureText: true,
                           controller: _passwordcontroller,
                           decoration: InputDecoration(
                             hintText: "Password",
@@ -122,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onTap: () async{
                             try{
                               final String userId = await auth.signInWithGoogle();
-                              RootPage();
+                              Phoenix.rebirth(context);
                             }catch(e){
                               print(e);
                             }
@@ -139,8 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Icon(
                                 LineIcons.google,
                               ),
-                            ),
-                          ),
+                            ),),
                         SizedBox(width: 20),
                         InkResponse(
                           onTap: ()=>{},
@@ -168,9 +167,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               try{
                                 final BaseAuth auth = AuthProvider.of(context).auth;
                                 final String userId = await auth.signUpWithEmail(_emailcontroller.text, _passwordcontroller.text);
-                                RootPage();
                                 if(userId != null){
                                   print("login successfull");
+                                  Phoenix.rebirth(context);
                                 }
                               }catch(e){
                                 print(e);

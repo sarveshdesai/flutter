@@ -4,26 +4,16 @@ import 'package:rescue/global/themes/themes.dart';
 import 'package:rescue/pages/home.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:rescue/pages/button.dart';
 import 'package:rescue/pages/numbers.dart';
+import 'package:rescue/pages/profile.dart';
+import 'package:rescue/pages/profile_view.dart';
 
-/*class UI extends StatelessWidget {
-  const UI({this.onSignedOut});
-  final VoidCallback onSignedOut;
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainUI(),
-      theme: CustomTheme().lightTheme(),
-    );
-  }
-}*/
 
 
 class MainUI extends StatefulWidget {
-  const MainUI({this.onSignedOut});
+  final cameras;
+  const MainUI({this.onSignedOut , this.cameras});
   final VoidCallback onSignedOut;
   @override
   Widget build(BuildContext context) {
@@ -39,14 +29,14 @@ class MainUI extends StatefulWidget {
 
 class _MainUIState extends State<MainUI> {
 
-  int _selectedIndex = 2;
-  //var _pages = [FirstPage(), Buttonns() ,HomePage().build(context), Numbers(), FourthPage()];
+
+  int _selectedIndex = 1;
   var _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    _pageController= PageController(initialPage: 2);
+    _pageController= PageController(initialPage: 1);
   }
 
   @override
@@ -57,13 +47,8 @@ class _MainUIState extends State<MainUI> {
 
   @override
   Widget build(BuildContext context) {
-    var _pages = [FirstPage(), Buttonns() ,HomePage(onSignedOut: widget.onSignedOut).build(context), Numbers(), FourthPage()];
+    var _pages = [Buttonns(widget.cameras) ,HomePage(), Numbers(), ProfileUser(onSignedOut: widget.onSignedOut)];
     return Scaffold(
-      /*
-      appBar: AppBar(
-        title: Text('Rescue', style: TextStyle(color: accentmar, fontFamily: 'Rubik', fontWeight: FontWeight.bold,),),
-        backgroundColor: primaryshrine,
-      ),*/
       body: PageView(
         children: _pages,
         onPageChanged: (index){
@@ -90,10 +75,6 @@ class _MainUIState extends State<MainUI> {
                 tabBackgroundColor: Theme.of(context).iconTheme.color,
                 tabs: [
                   GButton(
-                    icon: LineIcons.home,
-                    text: 'Home',
-                  ),
-                  GButton(
                     icon: LineIcons.circle_o_notch,
                     text: 'Buttons',
                   ),
@@ -118,8 +99,10 @@ class _MainUIState extends State<MainUI> {
                         _selectedIndex,
                         duration: Duration(milliseconds: 350),
                         curve: Curves.linear);
-                  });
-                }),
+                  }
+                  );
+                }
+                ),
           ),
         ),
       ),

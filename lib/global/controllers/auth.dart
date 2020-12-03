@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,6 +11,9 @@ abstract class BaseAuth {
   Future<String> currentUser();
   Future<bool> checkUser();
   Future<void> logOut();
+  String photoUrl();
+  String displayName();
+  String uID();
 }
 
 
@@ -37,6 +41,7 @@ class AuthHelper implements BaseAuth{
       idToken: auth.idToken,
     );
     final res = await _auth.signInWithCredential(credential);
+
     return res.user.uid;
   }
 
@@ -47,6 +52,21 @@ class AuthHelper implements BaseAuth{
   Future<void> logOut(){
     GoogleSignIn().signOut();
     return _auth.signOut();
+  }
+
+  String photoUrl() {
+    String url = _auth.currentUser.photoURL.toString();
+    return url;
+  }
+
+  String displayName(){
+    String name = _auth.currentUser.displayName.toString();
+    return name;
+  }
+
+  String uID(){
+    String uid = _auth.currentUser.uid;
+    return uid;
   }
 
   Future<bool> checkUser() async{

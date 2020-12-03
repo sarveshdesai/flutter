@@ -6,6 +6,8 @@ import 'package:rescue/pages/signin_screen.dart';
 import 'package:rescue/global/controllers/auth_provider.dart';
 
 class RootPage extends StatefulWidget {
+  final cameras;
+  RootPage(this.cameras);
   @override
   State<StatefulWidget> createState() => _RootPageState();
 }
@@ -62,6 +64,7 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.signedIn:
         return MainUI(
           onSignedOut: _signedOut,
+          cameras : widget.cameras,
         );
     }
     return null;

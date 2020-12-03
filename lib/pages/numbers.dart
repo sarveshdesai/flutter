@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rescue/global/Datatypes/numberdata.dart';
+import 'package:rescue/global/models/numberdata.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Numbers extends StatefulWidget {
   @override
@@ -26,14 +27,14 @@ class _NumbersState extends State<Numbers> {
                 padding: const EdgeInsets.only(left: 10, right: 32, top: 32, bottom: 10),
                 child: Row(
                   children: <Widget>[
-                    /*Text(
+                    Text(
                       "Emergency Contacts",
                       style: Theme.of(context)
                           .textTheme
                           .headline5
                           .copyWith(fontWeight: FontWeight.bold),
-                    ),*/
-                    Expanded(
+                    ),
+                    /*Expanded(
                       child: TextField(
                         //controller: _emailcontroller,
                         decoration: InputDecoration(
@@ -43,10 +44,9 @@ class _NumbersState extends State<Numbers> {
                                   color: Theme.of(context).accentColor,
                                 )
                             )
-
                         ),
                       ),
-                    )
+                    )*/
                   ],
                 ),
               ),
@@ -81,8 +81,14 @@ class _NumbersState extends State<Numbers> {
                                   margin: EdgeInsets.symmetric(horizontal: 20),
                                   child: InkResponse(
                                       containedInkWell: true,
-                                      onTap: () => {
-                                            print("okay"),
+                                      onTap: () async {
+                                            String callhelper = list[index]["number"].toString();
+                                            String call = 'tel: $callhelper';
+                                            if(await canLaunch(call)){
+                                                await launch(call);
+                                            }else{
+                                              throw 'could not launch $call';
+                                            }
                                           },
                                       child: ListTile(
                                         leading: Icon(Icons.call),
@@ -90,7 +96,10 @@ class _NumbersState extends State<Numbers> {
                                         subtitle:
                                             Text(list[index]["number"].toString()),
                                         trailing: trailing,
-                                      ))));
+                                      )
+                                  )
+                              )
+                          );
                         },
                         itemCount: list.length,
                       );

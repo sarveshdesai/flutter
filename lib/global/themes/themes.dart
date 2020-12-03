@@ -39,6 +39,7 @@ class CustomTheme {
   ThemeData lightTheme() {
     return ThemeData.light().copyWith(
         scaffoldBackgroundColor: Color(0xfffedbd0),
+        backgroundColor: Color(0xfffedbd0),
         primaryColorBrightness: Brightness.light,
         iconTheme: IconThemeData(
           color: Color(0xff442c2e),

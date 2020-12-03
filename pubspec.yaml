@@ -23,18 +23,33 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  form_field_validator:
-  rxdart:
+  form_field_validator: ^1.0.1
+  rxdart: ^0.24.1
+  get_it: ^5.0.1
+  image_picker: ^0.6.7+14
+  path_provider: ^1.6.24
+  storage_path: ^0.2.0
+  flutter_phoenix: ^0.1.0
 
   # firebase
-  firebase_core:
-  firebase_analytics:
-  firebase_auth:
-  google_sign_in:
-  cloud_firestore:
+  firebase_core: ^0.5.2
+  firebase_analytics: ^6.2.0
+  firebase_auth: ^0.18.3
+  google_sign_in: ^4.5.6
+  cloud_firestore: ^0.14.3
+  firebase_storage: ^5.0.1
 
+  #call
+  url_launcher: ^5.7.10
 
- # cloud_firebase:
+  #camera
+  camera: ^0.5.8+11
+
+  #audioplayer
+  audioplayers: ^0.13.2
+
+  #location
+  geolocator: ^6.1.7
 
 
 
@@ -69,9 +84,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/perosn.jpeg
-    - assets/images/chat.svg
-    - assets/images/Illustration.png
+      - assets/images/perosn.jpeg
+      - assets/images/chat.svg
+      - assets/images/Illustration.png
+      - assets/audio/police_siren.mp3
+      - police_siren.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:

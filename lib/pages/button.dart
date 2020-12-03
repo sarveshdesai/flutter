@@ -1,14 +1,25 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rescue/pages/camera.dart';
 
 
 class Buttonns extends StatefulWidget {
-
+  final cameras;
+  Buttonns(this.cameras);
   @override
   _ButtonnsState createState() => _ButtonnsState();
 }
 
 class _ButtonnsState extends State<Buttonns> {
+
+  String filePath = 'police_siren.mp3';
+  AudioCache audioCache = AudioCache();
+  AudioPlayer audioPlayer = AudioPlayer();
+  playLocal() async {
+    audioCache.play(filePath);
+  }
   @override
   Widget build(BuildContext context) {
     Key ok = ValueKey("1");
@@ -27,13 +38,19 @@ class _ButtonnsState extends State<Buttonns> {
                   child: InkResponse(
                       containedInkWell: true,
                       onTap: () => {
-                        print("okay"),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CameraView(widget.cameras)),
+                        ),
                       },
-                      child: ListTile(
-                        leading: Icon(Icons.call),
-                        title: Text("ok"),
-                        subtitle:  Text("ok"),
-                        trailing: Icon(Icons.call),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ListTile(
+
+                          leading: Icon(Icons.camera),
+                          title: Text("Record", style: new TextStyle(color: Theme.of(context).accentColor)),
+                          subtitle:  Text("record a suspicious person or an attacker safely"),
+                        ),
                       )
                   )
               )
@@ -49,13 +66,15 @@ class _ButtonnsState extends State<Buttonns> {
                     child: InkResponse(
                         containedInkWell: true,
                         onTap: () => {
-                          print("okay"),
+                          playLocal(),
                         },
-                        child: ListTile(
-                          leading: Icon(Icons.call),
-                          title: Text("notok"),
-                          subtitle:  Text("notok"),
-                          trailing: Icon(Icons.call),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ListTile(
+                            leading: Icon(Icons.call),
+                            title: Text("Buzzer", style: new TextStyle(color: Theme.of(context).accentColor)),
+                            subtitle:  Text("Siren to scare the attacker away"),
+                          ),
                         )))
             ),
 

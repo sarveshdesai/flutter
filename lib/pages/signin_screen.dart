@@ -1,3 +1,4 @@
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:rescue/global/controllers/auth.dart';
@@ -116,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          obscureText: true,
                           controller: _passwordcontroller,
                           decoration: InputDecoration(
                             hintText: "Password",
@@ -138,13 +140,10 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () async{
                             try{
                               final String userId = await auth.signInWithGoogle();
+                              Phoenix.rebirth(context);
                             }catch(e){
                               print(e);
                             }
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RootPage()));
                           },
                           child:Container(
                               padding: EdgeInsets.all(16),
@@ -179,6 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Spacer(),
                         SignInButton(
+                          text: "ok",
                           onPressed: () async {
                             if (_emailcontroller.text.isEmpty ||
                                 _passwordcontroller.text.isEmpty) {
@@ -191,16 +191,12 @@ class _LoginPageState extends State<LoginPage> {
                                   _passwordcontroller.text);
                               if (userId != null) {
                                 print("login successfull");
+                                Phoenix.rebirth(context);
                               }
                             } catch (e) {
                               print(e);
                             }
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RootPage()));
-                            },
-                           text: "ok",
+                          },
                         )
                       ],
                     ),

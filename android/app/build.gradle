@@ -40,7 +40,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.okay.rescue"
-        minSdkVersion 16
+        minSdkVersion 21
         multiDexEnabled true
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
@@ -65,4 +65,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //implementation 'com.andriod.support:multidex:1.0.3'
     implementation 'com.android.support:multidex:1.0.3'
+
 }
